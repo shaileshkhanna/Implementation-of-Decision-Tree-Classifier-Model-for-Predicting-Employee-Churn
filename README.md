@@ -17,13 +17,49 @@ To write a program to implement the Decision Tree Classifier Model for Predictin
 ```
 /*
 Program to implement the Decision Tree Classifier Model for Predicting Employee Churn.
-Developed by: 
-RegisterNumber:  
+Developed by: S.SHAILESH KHANNA
+RegisterNumber: 212220040152
+import pandas as pd
+data = pd.read_csv("Employee.csv")
+data.head()
+data.info()
+data.isnull().sum()
+data["left"].value_counts()
+from sklearn.preprocessing import LabelEncoder
+le = LabelEncoder()
+data["salary"] = le.fit_transform(data["salary"])
+data.head()
+x = data[["satisfaction_level","last_evaluation","number_project","average_montly_hours","time_spend_company","Work_accident","promotion_last_5years","salary"]]
+x.head()
+y = data["left"]
+from sklearn.model_selection import train_test_split
+x_train,x_test,y_train,y_test = train_test_split(x,y,test_size=0.2,random_state=100)
+from sklearn.tree import DecisionTreeClassifier
+dt = DecisionTreeClassifier(criterion = "entropy")
+dt.fit(x_train,y_train)
+y_pred = dt.predict(x_test)
+from sklearn import metrics
+accuracy = metrics.accuracy_score(y_test,y_pred)
+accuracy
+dt.predict([[0.5,0.8,9,260,6,0,1,2]])
 */
 ```
 
 ## Output:
-![decision tree classifier model](sam.png)
+Data head:
+![2](https://user-images.githubusercontent.com/103241457/173098125-35498973-3215-4c91-9ed3-6b70af54bb20.png)
+Information:
+![169693680-b6183dca-cdfb-4dad-afef-3badcecd05f9](https://user-images.githubusercontent.com/103241457/173098043-01d0c281-f591-4420-be7d-6901765926ce.png)
+Null dataset:
+![3](https://user-images.githubusercontent.com/103241457/173098265-a9968add-95d7-4a34-ba70-821ba591e1fa.png)
+Value_count():
+![4](https://user-images.githubusercontent.com/103241457/173098330-c7df5a2e-484d-4b51-9739-cc4d6e5b7072.png)
+Data head:
+![5](https://user-images.githubusercontent.com/103241457/173098414-e56acfa1-b943-4207-8159-2b61bb4db112.png)
+x.head():
+![6](https://user-images.githubusercontent.com/103241457/173098499-cff1d87b-489f-4cb4-9b3f-232cfdc09e80.png)
+
+
 
 
 ## Result:
